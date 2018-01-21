@@ -1,0 +1,21 @@
+
+
+.date {
+    width: 15%;
+}
+
+.usd-value {
+    width: 15%;
+}
+
+.btc-value {
+    width: 5%;
+}
+
+.type {
+    width: 10%;
+}
+
+.comment {
+    width: 30%;
+}
