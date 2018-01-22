@@ -21,6 +21,7 @@ class BuyOrSell extends Component {
         // var amount = document.getElementById("amount-input").value;
         var amount = 1;
         await this.sendPost("BUY", amount);
+        this.props.refreshTrigger();
     }
 
     async sendPost(type, amount) {
@@ -56,6 +57,7 @@ class BuyOrSell extends Component {
         // var amount = document.getElementById("amount-input").value;
         var amount = 1;
         await this.sendPost("SELL", amount);
+        this.props.refreshTrigger();
     }
 
     _onChange(event) {

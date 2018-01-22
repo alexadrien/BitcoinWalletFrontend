@@ -16,6 +16,7 @@ class Home extends Component {
             nickname: ""
         };
         this.handleNicknameClick = this.handleNicknameClick.bind(this);
+        this.refreshRecords = this.refreshRecords.bind(this);
     }
 
     async componentDidMount() {
@@ -30,8 +31,7 @@ class Home extends Component {
         }
     }
 
-    async handleNicknameClick() {
-        this.setState({nickname: this.state.nicknameValue});
+    async refreshRecords(){
         var url = "http://acube.tech:8080/bitcoinAPI/transaction/"+this.state.nicknameValue+"/";
         var request = new Request(url, {
             method: 'get',
@@ -54,6 +54,11 @@ class Home extends Component {
             json = await resp.json()
             this.setState({ btcusd: json.bpi.USD.rate_float });
         }
+    }
+
+    async handleNicknameClick() {
+        this.setState({nickname: this.state.nicknameValue});
+        await this.refreshRecords();
     }
     handleChange(e) {
       this.setState({ nicknameValue : e.target.value });
@@ -89,7 +94,8 @@ class Home extends Component {
                     </div>
                     <div style={hiddenRestOfPage}>
                         <BuyOrSell btcusd={this.state.btcusd}
-                                nickname={this.state.nickname}/>
+                                nickname={this.state.nickname}
+                                refreshTrigger={this.refreshRecords}/>
                         <Wallet transactions={this.state.records} btcusd={this.state.btcusd}/>
                         <LatestTransactions transactions={this.state.records}
                                 btcusd={this.state.btcusd}
