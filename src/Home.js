@@ -74,7 +74,7 @@ class Home extends Component {
         }
         var hiddenRestOfPage = {}
         console.log(this.state.nickname);
-        if (this.state.nickname != ""){
+        if (this.state.nickname !== ""){
             nicknameStyle = {
                 "display": "none",
                 textAlign: "center"
