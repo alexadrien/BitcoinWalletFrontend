@@ -42,7 +42,7 @@ class Home extends Component {
         var resp = await fetch(request).catch(err => {console.log(err)})
         if(resp.status >= 200 && resp.status < 300) {
             var json = await resp.json()
-            console.log(json);
+            json.reverse();
             this.setState({ records: json});
         }
 
